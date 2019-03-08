@@ -1,0 +1,9 @@
+﻿@Chaim Davis, location for script files in git - https://git.sami.int.thomsonreuters.com/datacloud/ingestion/tree/master/adc-ingestion/pentahojobs/jobs/estimates
+
+
+https://dev.mysql.com/doc/refman/5.6/en/data-types.html
+
+
+http://docs.actian.com/ingres/10S/index.html#page/SQLRef/Summary_of_ANSI_Date_2fTime_Data_Types.htm
+https://www.postgresql.org/docs/9.5/datatype.html
+

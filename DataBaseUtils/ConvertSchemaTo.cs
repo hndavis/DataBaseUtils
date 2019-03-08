@@ -129,7 +129,6 @@ namespace DataBaseUtils
 				foreach (var filename in files)
 				{
 					lbFilesToBeConverted.Items.Add(Path.GetFileName(filename));
-
 				}
 			}
 			catch (Exception ex1)
@@ -164,46 +163,71 @@ namespace DataBaseUtils
 		{
 			if (cbSingleFile.Checked)
 			{
-				var currentFileName = Path.GetFileName(txtSingleFile.Text);
-				if (currentFileName == null)
+				bool overwrite = false;
+				bool ask = true;
+				
+				ConvertAndWrite(txtOutputDir.Text, txtSingleFile.Text, ref overwrite, ref ask);
+			}
+			else
+			{
+				bool overwrite = false;
+				bool ask = true;
+				var files = GetFilesInDir(txtInputDir.Text, "*.sql");
+				foreach (var inputfile in files)
 				{
-					MessageBox.Show("FileName not specified", "Error", MessageBoxButtons.OK);
-				}
-				var outputFile = Path.Combine(txtOutputDir.Text, currentFileName);
-
-				bool bOverwrite = false;
-				if (File.Exists(outputFile))
-				{
-
-					if (DialogResult.No == MessageBox.Show(outputFile + " Exists.  Do want to overwrite ?", "Error",
-						    MessageBoxButtons.YesNo))
-						return;
-					bOverwrite = true;
-
-				}
-
-				string fileContent="";
-				using (FileStream fileStream = File.OpenRead(txtSingleFile.Text))
-				{
-
-					using (StreamReader reader = new StreamReader(fileStream))
-					{
-						 fileContent = reader.ReadToEnd();
-					}
-				}
-
-				foreach (var replace in VectorToMySql.items)
-				{
-					fileContent.Replace(replace.From, replace.To);
-
-				}
-
-				using (StreamWriter sr = File.AppendText(outputFile))
-				{
-					sr.WriteLine(fileContent);
+					ConvertAndWrite(txtOutputDir.Text, inputfile, ref overwrite, ref ask);
 				}
 			}
 		}
+
+		void ConvertAndWrite(string outputdir, string inputfile, ref bool overwrite, ref bool ask  )
+		{
+			var fileName = Path.GetFileName(inputfile);
+			if ( string.IsNullOrEmpty(fileName))
+				throw new Exception("Bad File: " + fileName);
+			var outputFile = Path.Combine(outputdir, fileName);
+				if (File.Exists(outputFile))
+				{
+					if (ask)
+					{
+						if (DialogResult.No == MessageBox.Show(outputFile + "Exists.  Do want to overwrite ?", "Error",
+							    MessageBoxButtons.YesNo))
+						{
+							overwrite = false;
+						}
+						else
+						{
+						overwrite = true;
+					}
+				}
+
+				ask = false;
+				if (!overwrite)
+					return;
+
+			}
+
+			string fileContent = "";
+			using (FileStream fileStream = File.OpenRead(inputfile))
+			{
+
+				using (StreamReader reader = new StreamReader(fileStream))
+				{
+					fileContent = reader.ReadToEnd();
+				}
+			}
+
+			foreach (var replace in VectorToMySql.items)
+			{
+				fileContent = fileContent.Replace(replace.From, replace.To);
+
+			}
+
+			File.WriteAllText(outputFile, fileContent);
+
+		}
+
+
 
 		private bool DoesFileExists(string path)
 		{
