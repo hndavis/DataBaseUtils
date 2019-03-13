@@ -46,5 +46,41 @@ namespace DataBaseUtils.Properties {
                 this["DirForConverted"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".")]
+        public string DirForSourceOfFileToConcat {
+            get {
+                return ((string)(this["DirForSourceOfFileToConcat"]));
+            }
+            set {
+                this["DirForSourceOfFileToConcat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MySqlSchema")]
+        public string FileNameOutputConcat {
+            get {
+                return ((string)(this["FileNameOutputConcat"]));
+            }
+            set {
+                this["FileNameOutputConcat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FilesToBeCombined {
+            get {
+                return ((string)(this["FilesToBeCombined"]));
+            }
+            set {
+                this["FilesToBeCombined"] = value;
+            }
+        }
     }
 }

@@ -22,5 +22,11 @@ namespace DataBaseUtils
 			var frmConvert = new ConvertSchemaTo();
 			frmConvert.Show(this);
 		}
+
+		private void pbOpenConCat_Click(object sender, EventArgs e)
+		{
+			var frmConCat  = new frmConcat();
+			frmConCat.Show();
+		}
 	}
 }

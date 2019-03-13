@@ -90,13 +90,6 @@ namespace DataBaseUtils
 					//Get the path of specified file
 					txtSingleFile.Text = openFileDialog.FileName;
 
-					//Read the contents of the file into a stream
-					//var fileStream = openFileDialog.OpenFile();
-
-					//using (StreamReader reader = new StreamReader(fileStream))
-					//{
-					//	fileContent = reader.ReadToEnd();
-					//}
 				}
 			}
 		}
@@ -128,7 +121,7 @@ namespace DataBaseUtils
 				var files = GetFilesInDir(txtInputDir.Text, "*.sql");
 				foreach (var filename in files)
 				{
-					lbFilesToBeConverted.Items.Add(Path.GetFileName(filename));
+					lbFilesToBeConverted.Items.Add( Path.GetFileName(filename));
 				}
 			}
 			catch (Exception ex1)
@@ -144,7 +137,7 @@ namespace DataBaseUtils
 
 		}
 
-		private List<string> GetFilesInDir(string dir,string filter = null)
+		public static List<string> GetFilesInDir(string dir,string filter = null)
 		{
 			if (Directory.Exists(dir))
 			{
@@ -219,7 +212,7 @@ namespace DataBaseUtils
 
 			foreach (var replace in VectorToMySql.items)
 			{
-				fileContent = fileContent.Replace(replace.From, replace.To);
+				fileContent = fileContent.ToUpper().Replace(replace.From, replace.To);
 
 			}
 

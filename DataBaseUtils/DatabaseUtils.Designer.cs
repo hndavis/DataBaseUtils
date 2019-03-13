@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.btnConvertToMySql = new System.Windows.Forms.Button();
+			this.pbOpenConCat = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnConvertToMySql
@@ -41,11 +42,22 @@
 			this.btnConvertToMySql.UseVisualStyleBackColor = true;
 			this.btnConvertToMySql.Click += new System.EventHandler(this.btnConvertToMySql_Click);
 			// 
+			// pbOpenConCat
+			// 
+			this.pbOpenConCat.Location = new System.Drawing.Point(340, 44);
+			this.pbOpenConCat.Name = "pbOpenConCat";
+			this.pbOpenConCat.Size = new System.Drawing.Size(156, 39);
+			this.pbOpenConCat.TabIndex = 1;
+			this.pbOpenConCat.Text = "Concat Schema Files";
+			this.pbOpenConCat.UseVisualStyleBackColor = true;
+			this.pbOpenConCat.Click += new System.EventHandler(this.pbOpenConCat_Click);
+			// 
 			// DatabaseUtils
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.pbOpenConCat);
 			this.Controls.Add(this.btnConvertToMySql);
 			this.Name = "DatabaseUtils";
 			this.Text = "DatabaseUtils";
@@ -56,5 +68,6 @@
 		#endregion
 
 		private System.Windows.Forms.Button btnConvertToMySql;
+		private System.Windows.Forms.Button pbOpenConCat;
 	}
 }
